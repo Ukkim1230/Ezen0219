@@ -18,4 +18,11 @@ public class DBCon {
 		}
 		return DriverManager.getConnection(URL,USER,PWD);
 	}
+	public static void main(String[] args) {
+		try {
+			getCon();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
