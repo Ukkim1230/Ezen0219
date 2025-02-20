@@ -87,6 +87,10 @@ public class UserInfoRepository {
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
 			UserInfoVO user = new UserInfoVO();
+			user.setUiNum(rs.getInt("UI_NUM"));
+			user.setUiName(rs.getString("UI_NAME"));
+			user.setUiId(rs.getString("UI_ID"));
+			user.setUiPwd(rs.getString("));
 			
 		}
 			if(userInfo!=null) {
