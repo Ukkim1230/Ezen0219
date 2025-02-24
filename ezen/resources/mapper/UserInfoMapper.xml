@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p0224.UserInfoMapper">
+	<select id="selectUserInfos" resultType="map">
+		select UI_NUM, UI_NAME, UI_ID, UI_PWD from USER_INFO
+		<where>
+			<if test='uiName !=null and uiName !=""'>//쌍따음표로 묶지 않는 이유 인식을 안해서 홑따음표로 묶음
+				AND UI_NAME LIKE
+				CONCAT('%',#{uiName},'%')
+			</if>
+			<if test='uiId != null and uiName !=""'>
+				And UI_ID LIKE CONCAT('%',#{uiId},'%')
+			</if>
+		</where>
+	</select>
+	<select id="selectUserInfo" resultType="map">
+		select UI_NUM, UI_NAME,
+		UI_ID, UI_PWD
+		from USER_INFO
+		WHERE UI_NUM=#{uiNum}
+	</select>
+	<insert id="insertUserInfo">
+		insert into user_INFO(UI_NAME,UI_ID,UI_PWD)
+		VALUES(#{uiName},#{uiId},#{uiPwd})
+	</insert>
+	<update id="updateUserInfo">
+		update USER_INFO
+		set UI_NAME=#{uiName},
+		UI_ID =#{uiId},
+		UI_PWD =#{uiPwd}
+		where UI_NUM=#{uiNum}
+	</update>
+	<delete id="deleteUserInfo">
+	delete
+	from USER_INFO
+	where UI_NUM=#{uiNum}
+	</delete>
+</mapper>
